@@ -17,7 +17,7 @@ importers:
     devDependencies:
       '@stzhu/eslint-config':
         specifier: ^0.9.0
-        version: 0.9.1(eslint@9.39.2(jiti@2.6.1))(storybook@10.2.7(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(tailwindcss@4.1.18)(turbo@2.8.3)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.1)(jiti@2.6.1)(tsx@4.21.0))
+        version: 0.9.1(eslint@9.39.2(jiti@2.6.1))(storybook@10.2.7(@testing-library/dom@10.4.1)(prettier@3.8.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(tailwindcss@4.1.18)(turbo@2.8.3)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.1)(jiti@2.6.1)(tsx@4.21.0))
       '@stzhu/tsconfig':
         specifier: ^0.1.1
         version: 0.1.1
@@ -30,9 +30,12 @@ importers:
       globals:
         specifier: ^17.0.0
         version: 17.3.0
+      prettier:
+        specifier: ^3.8.1
+        version: 3.8.1
       prettier-plugin-packagejson:
         specifier: ^3.0.0
-        version: 3.0.0
+        version: 3.0.0(prettier@3.8.1)
       tsup:
         specifier: ^8.5.1
         version: 8.5.1(jiti@2.6.1)(postcss@8.5.6)(tsx@4.21.0)(typescript@5.9.3)
@@ -42,9 +45,6 @@ importers:
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
-      vitest:
-        specifier: ^4.0.16
-        version: 4.0.18(@types/node@25.2.1)(jiti@2.6.1)(tsx@4.21.0)
       wxt:
         specifier: ^0.20.13
         version: 0.20.13(@types/node@25.2.1)(jiti@2.6.1)(rollup@4.57.1)(tsx@4.21.0)
@@ -2619,6 +2619,11 @@ packages:
       prettier:
         optional: true
 
+  prettier@3.8.1:
+    resolution: {integrity: sha512-UOnG6LftzbdaHZcKoPFtOcCKztrQ57WkHDeRD9t/PTQtmT0NHSeWWepj6pS0z/N7+08BHFDQVUrfmfMRcZwbMg==}
+    engines: {node: '>=14'}
+    hasBin: true
+
   pretty-format@27.5.1:
     resolution: {integrity: sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
@@ -3924,7 +3929,8 @@ snapshots:
 
   '@rtsao/scc@1.1.0': {}
 
-  '@standard-schema/spec@1.1.0': {}
+  '@standard-schema/spec@1.1.0':
+    optional: true
 
   '@storybook/global@5.0.0': {}
 
@@ -3933,7 +3939,7 @@ snapshots:
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
 
-  '@stzhu/eslint-config@0.9.1(eslint@9.39.2(jiti@2.6.1))(storybook@10.2.7(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(tailwindcss@4.1.18)(turbo@2.8.3)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.1)(jiti@2.6.1)(tsx@4.21.0))':
+  '@stzhu/eslint-config@0.9.1(eslint@9.39.2(jiti@2.6.1))(storybook@10.2.7(@testing-library/dom@10.4.1)(prettier@3.8.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(tailwindcss@4.1.18)(turbo@2.8.3)(typescript@5.9.3)(vitest@4.0.18(@types/node@25.2.1)(jiti@2.6.1)(tsx@4.21.0))':
     dependencies:
       '@eslint/js': 9.39.2
       '@typescript-eslint/eslint-plugin': 8.54.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
@@ -3953,12 +3959,12 @@ snapshots:
       eslint-plugin-react-hooks: 7.0.1(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-react-refresh: 0.4.26(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-simple-import-sort: 12.1.1(eslint@9.39.2(jiti@2.6.1))
-      eslint-plugin-storybook: 10.2.7(eslint@9.39.2(jiti@2.6.1))(storybook@10.2.7(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(typescript@5.9.3)
+      eslint-plugin-storybook: 10.2.7(eslint@9.39.2(jiti@2.6.1))(storybook@10.2.7(@testing-library/dom@10.4.1)(prettier@3.8.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(typescript@5.9.3)
       eslint-plugin-turbo: 2.8.3(eslint@9.39.2(jiti@2.6.1))(turbo@2.8.3)
       globals: 16.5.0
       typescript-eslint: 8.54.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
     optionalDependencies:
-      storybook: 10.2.7(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      storybook: 10.2.7(@testing-library/dom@10.4.1)(prettier@3.8.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       tailwindcss: 4.1.18
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -4205,6 +4211,7 @@ snapshots:
       '@vitest/utils': 4.0.18
       chai: 6.2.2
       tinyrainbow: 3.0.3
+    optional: true
 
   '@vitest/mocker@4.0.18(vite@7.3.1(@types/node@25.2.1)(jiti@2.6.1)(tsx@4.21.0))':
     dependencies:
@@ -4213,6 +4220,7 @@ snapshots:
       magic-string: 0.30.21
     optionalDependencies:
       vite: 7.3.1(@types/node@25.2.1)(jiti@2.6.1)(tsx@4.21.0)
+    optional: true
 
   '@vitest/pretty-format@3.2.4':
     dependencies:
@@ -4221,23 +4229,27 @@ snapshots:
   '@vitest/pretty-format@4.0.18':
     dependencies:
       tinyrainbow: 3.0.3
+    optional: true
 
   '@vitest/runner@4.0.18':
     dependencies:
       '@vitest/utils': 4.0.18
       pathe: 2.0.3
+    optional: true
 
   '@vitest/snapshot@4.0.18':
     dependencies:
       '@vitest/pretty-format': 4.0.18
       magic-string: 0.30.21
       pathe: 2.0.3
+    optional: true
 
   '@vitest/spy@3.2.4':
     dependencies:
       tinyspy: 4.0.4
 
-  '@vitest/spy@4.0.18': {}
+  '@vitest/spy@4.0.18':
+    optional: true
 
   '@vitest/utils@3.2.4':
     dependencies:
@@ -4249,6 +4261,7 @@ snapshots:
     dependencies:
       '@vitest/pretty-format': 4.0.18
       tinyrainbow: 3.0.3
+    optional: true
 
   '@webext-core/fake-browser@1.3.4':
     dependencies:
@@ -4513,7 +4526,8 @@ snapshots:
       loupe: 3.2.1
       pathval: 2.0.1
 
-  chai@6.2.2: {}
+  chai@6.2.2:
+    optional: true
 
   chalk@4.1.2:
     dependencies:
@@ -4853,7 +4867,8 @@ snapshots:
       iterator.prototype: 1.1.5
       safe-array-concat: 1.1.3
 
-  es-module-lexer@1.7.0: {}
+  es-module-lexer@1.7.0:
+    optional: true
 
   es-module-lexer@2.0.0: {}
 
@@ -5172,11 +5187,11 @@ snapshots:
     dependencies:
       eslint: 9.39.2(jiti@2.6.1)
 
-  eslint-plugin-storybook@10.2.7(eslint@9.39.2(jiti@2.6.1))(storybook@10.2.7(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(typescript@5.9.3):
+  eslint-plugin-storybook@10.2.7(eslint@9.39.2(jiti@2.6.1))(storybook@10.2.7(@testing-library/dom@10.4.1)(prettier@3.8.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(typescript@5.9.3):
     dependencies:
       '@typescript-eslint/utils': 8.54.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       eslint: 9.39.2(jiti@2.6.1)
-      storybook: 10.2.7(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      storybook: 10.2.7(@testing-library/dom@10.4.1)(prettier@3.8.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -5263,7 +5278,8 @@ snapshots:
 
   eventemitter3@5.0.4: {}
 
-  expect-type@1.3.0: {}
+  expect-type@1.3.0:
+    optional: true
 
   exsolve@1.0.8: {}
 
@@ -6164,9 +6180,13 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-packagejson@3.0.0:
+  prettier-plugin-packagejson@3.0.0(prettier@3.8.1):
     dependencies:
       sort-package-json: 3.6.0
+    optionalDependencies:
+      prettier: 3.8.1
+
+  prettier@3.8.1: {}
 
   pretty-format@27.5.1:
     dependencies:
@@ -6468,7 +6488,8 @@ snapshots:
       side-channel-map: 1.0.1
       side-channel-weakmap: 1.0.2
 
-  siginfo@2.0.0: {}
+  siginfo@2.0.0:
+    optional: true
 
   signal-exit@4.1.0: {}
 
@@ -6526,9 +6547,11 @@ snapshots:
 
   stable-hash@0.0.5: {}
 
-  stackback@0.0.2: {}
+  stackback@0.0.2:
+    optional: true
 
-  std-env@3.10.0: {}
+  std-env@3.10.0:
+    optional: true
 
   stdin-discarder@0.2.2: {}
 
@@ -6537,7 +6560,7 @@ snapshots:
       es-errors: 1.3.0
       internal-slot: 1.1.0
 
-  storybook@10.2.7(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+  storybook@10.2.7(@testing-library/dom@10.4.1)(prettier@3.8.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:
       '@storybook/global': 5.0.0
       '@storybook/icons': 2.0.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -6551,6 +6574,8 @@ snapshots:
       semver: 7.7.4
       use-sync-external-store: 1.6.0(react@19.2.4)
       ws: 8.19.0
+    optionalDependencies:
+      prettier: 3.8.1
     transitivePeerDependencies:
       - '@testing-library/dom'
       - bufferutil
@@ -6692,7 +6717,8 @@ snapshots:
 
   tiny-invariant@1.3.3: {}
 
-  tinybench@2.9.0: {}
+  tinybench@2.9.0:
+    optional: true
 
   tinyexec@0.3.2: {}
 
@@ -6705,7 +6731,8 @@ snapshots:
 
   tinyrainbow@2.0.0: {}
 
-  tinyrainbow@3.0.3: {}
+  tinyrainbow@3.0.3:
+    optional: true
 
   tinyspy@4.0.4: {}
 
@@ -7037,6 +7064,7 @@ snapshots:
       - terser
       - tsx
       - yaml
+    optional: true
 
   watchpack@2.4.4:
     dependencies:
@@ -7128,6 +7156,7 @@ snapshots:
     dependencies:
       siginfo: 2.0.0
       stackback: 0.0.2
+    optional: true
 
   widest-line@5.0.0:
     dependencies:

@@ -2,10 +2,12 @@
 
 WXT module for Turborepo integration.
 
+This module intelligently bundles only the extension workspace and its dependent workspaces when creating source zips, excluding unrelated packages from your monorepo.
+
 ## Installation
 
-```bash
-npm install -D wxt-turbo
+```shell
+pnpm install -D wxt-turbo
 ```
 
 ## Usage
@@ -19,10 +21,8 @@ export default defineConfig({
   modules: ['wxt-turbo'],
   turbo: {
     packageName: 'your-extension-package-name',
-    copyFiles: [
-      { from: 'FIREFOX_README.md', to: 'FIREFOX_README.md' },
-    ],
-    cleanup: true,
+    copyFiles: [{ from: 'FIREFOX_README.md', to: 'README.md' }, 'LICENSE'],
+    cleanup: true, // default: true
   },
 });
 ```
