@@ -1,4 +1,4 @@
-import { constants as fsConstants,copyFile, rm } from 'node:fs/promises';
+import { constants as fsConstants, copyFile, rm } from 'node:fs/promises';
 import { basename, join, resolve } from 'node:path';
 
 import isPathInside from 'is-path-inside';
@@ -70,7 +70,8 @@ export default defineWxtModule<TurboModuleOptions>({
         typeof error.code === 'string' &&
         error.code === 'ENOENT'
       ) {
-        wxt.logger.warn(LOGGER_PREFIX, 'Turborepo is not installed'); return;
+        wxt.logger.warn(LOGGER_PREFIX, 'Turborepo is not installed');
+        return;
       }
       throw error;
     }
