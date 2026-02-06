@@ -1,0 +1,11 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+  ci:
+    uses: stevezhu/actions/.github/workflows/ci-node.yaml@v1

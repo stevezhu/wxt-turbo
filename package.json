@@ -1,0 +1,62 @@
+{
+  "name": "wxt-turbo",
+  "version": "0.1.0",
+  "description": "WXT module for Turborepo integration",
+  "keywords": [
+    "wxt",
+    "wxt-module",
+    "turborepo",
+    "turbo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stevezhu/wxt-turbo.git"
+  },
+  "license": "MIT",
+  "author": "Steve Zhu <4130171+stevezhu@users.noreply.github.com>",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "format": "prettier -w . && eslint . --fix",
+    "lint": "prettier -c . && eslint .",
+    "test": "tsc --noEmit && vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "is-path-inside": "^4.0.0",
+    "tinyexec": "^1.0.2"
+  },
+  "devDependencies": {
+    "@stzhu/eslint-config": "^0.9.0",
+    "@stzhu/tsconfig": "^0.1.1",
+    "@types/node": "^25.0.3",
+    "eslint": "^9.39.2",
+    "globals": "^17.0.0",
+    "prettier-plugin-packagejson": "^3.0.0",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16",
+    "wxt": "^0.20.13"
+  },
+  "peerDependencies": {
+    "wxt": "^0.20.0"
+  },
+  "packageManager": "pnpm@10.28.2",
+  "engines": {
+    "node": ">=20"
+  }
+}

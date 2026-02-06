@@ -1,0 +1,22 @@
+name: Bump Package Version
+on:
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: 'Version bump type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  bump-version:
+    uses: stevezhu/actions/.github/workflows/npm-bump-version.yaml@v1
+    permissions:
+      contents: write
+      pull-requests: write
+    with:
+      version_type: ${{ inputs.version_type }}

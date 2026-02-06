@@ -1,0 +1,11 @@
+name: Publish
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    uses: stevezhu/actions/.github/workflows/npm-publish.yaml@v1
+    permissions:
+      contents: read
+      id-token: write
