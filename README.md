@@ -21,7 +21,10 @@ export default defineConfig({
   modules: ['wxt-turbo'],
   turbo: {
     packageName: 'your-extension-package-name',
-    copyFiles: [{ from: 'FIREFOX_README.md', to: 'README.md' }, 'LICENSE'],
+    copyFiles: [
+      { from: 'SOURCE_CODE_REVIEW.md', to: 'SOURCE_CODE_REVIEW.md' },
+      'SOURCE_CODE_REVIEW.md',
+    ],
     cleanup: true, // default: true
   },
 });
