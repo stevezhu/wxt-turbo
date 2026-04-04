@@ -36,22 +36,22 @@
   },
   "dependencies": {
     "is-path-inside": "^4.0.0",
-    "tinyexec": "^1.0.2"
+    "tinyexec": "^1.0.4"
   },
   "devDependencies": {
-    "@stzhu/eslint-config": "^0.9.0",
-    "@stzhu/tsconfig": "^0.1.1",
-    "@types/node": "^25.0.3",
+    "@stzhu/eslint-config": "^0.11.0",
+    "@stzhu/tsconfig": "^0.5.0",
+    "@types/node": "^25.5.2",
     "eslint": "^9.39.2",
     "prettier": "^3.8.1",
-    "prettier-plugin-packagejson": "^3.0.0",
-    "tsdown": "^0.20.3",
-    "typescript": "^5.9.3"
+    "prettier-plugin-packagejson": "^3.0.2",
+    "tsdown": "^0.21.7",
+    "typescript": "^6.0.2"
   },
   "peerDependencies": {
     "wxt": "^0.20.0"
   },
-  "packageManager": "pnpm@10.28.2",
+  "packageManager": "pnpm@10.33.0",
   "engines": {
     "node": ">=20"
   }
