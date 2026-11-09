@@ -46,7 +46,6 @@ declare module 'wxt' {
 }
 
 const LOGGER_PREFIX = '`[wxt-turbo]`';
-const MAX_CONCURRENT_COPIES = 8;
 
 export default defineWxtModule<TurboModuleOptions>({
   name: 'wxt-turbo',
@@ -101,32 +100,24 @@ export default defineWxtModule<TurboModuleOptions>({
       }
 
       if (options.copyFiles) {
-        const files = options.copyFiles.values();
-        await Promise.all(
-          Array.from(
-            { length: Math.min(MAX_CONCURRENT_COPIES, options.copyFiles.length) },
-            async () => {
-              for (const fileInfo of files) {
-                const absoluteFromPath = resolve(
-                  wxt.config.root,
-                  typeof fileInfo === 'string' ? fileInfo : fileInfo.from,
-                );
-                const absoluteToPath = resolve(
-                  absoluteSourcesRoot,
-                  typeof fileInfo === 'string' ? basename(fileInfo) : fileInfo.to,
-                );
-                // Each worker finishes its copy before taking another file.
-                // oxlint-disable-next-line no-await-in-loop
-                await copyFile(
-                  absoluteFromPath,
-                  absoluteToPath,
-                  // fail if destination file already exists
-                  fsConstants.COPYFILE_EXCL,
-                );
-              }
-            },
-          ),
-        );
+        for (const fileInfo of options.copyFiles) {
+          const absoluteFromPath = resolve(
+            wxt.config.root,
+            typeof fileInfo === 'string' ? fileInfo : fileInfo.from,
+          );
+          const absoluteToPath = resolve(
+            absoluteSourcesRoot,
+            typeof fileInfo === 'string' ? basename(fileInfo) : fileInfo.to,
+          );
+          // Preserve copy order so duplicate destinations fail deterministically.
+          // oxlint-disable-next-line no-await-in-loop
+          await copyFile(
+            absoluteFromPath,
+            absoluteToPath,
+            // fail if destination file already exists
+            fsConstants.COPYFILE_EXCL,
+          );
+        }
       }
     });
 
