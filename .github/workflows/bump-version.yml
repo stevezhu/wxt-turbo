@@ -14,9 +14,13 @@ on:
 
 jobs:
   bump-version:
-    uses: stevezhu/actions/.github/workflows/npm-bump-version.yaml@d59c7bbfb7ec9875d5b3aeb8ad3a1aa59ec346ea # v1
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       contents: write
       pull-requests: write
-    with:
-      version_type: ${{ inputs.version_type }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: stevezhu/actions/npm-bump-version@8da25b89202307b8a88091dac8f9e2fcf830a818 # v3.0.0
+        with:
+          version_type: ${{ inputs.version_type }}
