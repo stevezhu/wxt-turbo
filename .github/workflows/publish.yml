@@ -5,7 +5,24 @@ on:
 
 jobs:
   publish:
-    uses: stevezhu/actions/.github/workflows/npm-publish.yaml@d59c7bbfb7ec9875d5b3aeb8ad3a1aa59ec346ea # v1
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: read
       id-token: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: package.json
+          cache: pnpm
+          registry-url: 'https://registry.npmjs.org'
+      # Staged publishing requires npm 11.15.0 or later.
+      - run: npm install --global npm@^11.15.0
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run --if-present lint
+      - run: pnpm run --if-present test
+      - run: pnpm run --if-present build
+      - name: Stage package for approval
+        run: npm stage publish --access public --provenance
