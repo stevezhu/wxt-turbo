@@ -37,9 +37,9 @@ export default defineConfig({
 
 ## Publishing
 
-Publishing a GitHub release runs checks, builds the package, and stages it on npm using trusted publishing (OIDC). The npm trusted publisher for `publish.yml` must allow staged publishing.
+Publishing a GitHub release uses `stevezhu/actions/npm-publish@v3` to run checks, build the package, and stage it on npm with provenance. Configure the repository's `NPM_TOKEN` Actions secret with permission to stage this package. The action uses pnpm 11.3.0 or later, selected by `packageManager` in `package.json`.
 
-Review the package in npm's **Staged Packages** tab and approve it with 2FA to make the version public. You can also review it with `npm stage list wxt-turbo` and approve it with `npm stage approve <stage-id>` using npm 11.15.0 or later. See [npm's staged publishing documentation](https://docs.npmjs.com/staged-publishing/).
+Review the package in npm's **Staged Packages** tab and approve it with 2FA to make the version public. You can also review it with `pnpm stage list wxt-turbo` and approve it with `pnpm stage approve <stage-id>`. The stage ID is printed in the action logs. See [npm's staged publishing documentation](https://docs.npmjs.com/staged-publishing/).
 
 ## License
 

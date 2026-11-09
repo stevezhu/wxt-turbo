@@ -12,17 +12,6 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v5
-      - uses: actions/setup-node@v6
+      - uses: stevezhu/actions/npm-publish@v3
         with:
-          node-version-file: package.json
-          cache: pnpm
-          registry-url: 'https://registry.npmjs.org'
-      # Staged publishing requires npm 11.15.0 or later.
-      - run: npm install --global npm@^11.15.0
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run --if-present lint
-      - run: pnpm run --if-present test
-      - run: pnpm run --if-present build
-      - name: Stage package for approval
-        run: npm stage publish --access public --provenance
+          npm-token: ${{ secrets.NPM_TOKEN }}
