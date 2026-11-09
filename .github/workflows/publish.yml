@@ -5,7 +5,7 @@ on:
 
 jobs:
   publish:
-    uses: stevezhu/actions/.github/workflows/npm-publish.yaml@v1
+    uses: stevezhu/actions/.github/workflows/npm-publish.yaml@d59c7bbfb7ec9875d5b3aeb8ad3a1aa59ec346ea # v1
     permissions:
       contents: read
       id-token: write
