@@ -109,6 +109,7 @@ export default defineWxtModule<TurboModuleOptions>({
             absoluteSourcesRoot,
             typeof fileInfo === 'string' ? basename(fileInfo) : fileInfo.to,
           );
+          // Keep the sequential loop for clarity; ignore no-await-in-loop for this copy.
           // oxlint-disable-next-line no-await-in-loop
           await copyFile(
             absoluteFromPath,
