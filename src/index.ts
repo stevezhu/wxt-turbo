@@ -90,12 +90,7 @@ export default defineWxtModule<TurboModuleOptions>({
 
       const { sourcesRoot } = wxt.config.zip;
       const absoluteSourcesRoot = resolve(wxt.config.root, sourcesRoot);
-      const proc = x('turbo', [
-        'prune',
-        packageName,
-        '--out-dir',
-        absoluteSourcesRoot,
-      ]);
+      const proc = x('turbo', ['prune', packageName, '--out-dir', absoluteSourcesRoot]);
       proc.process?.stdout?.on('data', (data: Buffer) => {
         wxt.logger.debug(LOGGER_PREFIX, data.toString().trimEnd());
       });
@@ -106,16 +101,11 @@ export default defineWxtModule<TurboModuleOptions>({
 
       if (options.copyFiles) {
         for (const fileInfo of options.copyFiles) {
-          const { absoluteFromPath, absoluteToPath } = ((
-            fileInfo: CopyFileConfig | string,
-          ) => {
+          const { absoluteFromPath, absoluteToPath } = ((fileInfo: CopyFileConfig | string) => {
             if (typeof fileInfo === 'string') {
               return {
                 absoluteFromPath: resolve(wxt.config.root, fileInfo),
-                absoluteToPath: resolve(
-                  absoluteSourcesRoot,
-                  basename(fileInfo),
-                ),
+                absoluteToPath: resolve(absoluteSourcesRoot, basename(fileInfo)),
               };
             }
             return {
