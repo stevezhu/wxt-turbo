@@ -40,9 +40,10 @@ export default defineConfig({
 Run `pnpm test` to typecheck the package and run the WXT integration tests, or
 `pnpm test:integration` to run only the integration tests (including a package build).
 
-The tests create temporary Git monorepos and run the real WXT CLI with the built
-module. They check Firefox extension and source ZIP contents, workspace pruning,
-both `copyFiles` formats, stale-source removal, and default versus disabled cleanup.
+The tests copy `tests/fixtures/monorepo` into temporary directories, initialize Git,
+and run the real WXT CLI with the built module. They check Firefox extension and
+source ZIP contents, workspace pruning, both `copyFiles` formats, stale-source
+removal, and default versus disabled cleanup.
 They require Git on `PATH` and do not launch a browser or access the network.
 
 ## Publishing
