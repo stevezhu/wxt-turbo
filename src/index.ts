@@ -50,7 +50,7 @@ const LOGGER_PREFIX = '`[wxt-turbo]`';
 export default defineWxtModule<TurboModuleOptions>({
   name: 'wxt-turbo',
   configKey: 'turbo',
-  async setup(wxt, options) {
+  async setup(wxtInstance, options) {
     const packageName = options?.packageName;
     if (!packageName) {
       throw new Error('packageName is required');
@@ -61,7 +61,7 @@ export default defineWxtModule<TurboModuleOptions>({
       if ((await x('turbo', ['--version'])).exitCode !== 0) {
         throw new Error(`${LOGGER_PREFIX} Command failed: \`turbo --version\``);
       }
-      wxt.logger.info(LOGGER_PREFIX, 'Turborepo detected.');
+      wxtInstance.logger.info(LOGGER_PREFIX, 'Turborepo detected.');
     } catch (error) {
       // https://github.com/nodejs/node/issues/46869
       if (
@@ -70,13 +70,13 @@ export default defineWxtModule<TurboModuleOptions>({
         typeof error.code === 'string' &&
         error.code === 'ENOENT'
       ) {
-        wxt.logger.warn(LOGGER_PREFIX, 'Turborepo is not installed');
+        wxtInstance.logger.warn(LOGGER_PREFIX, 'Turborepo is not installed');
         return;
       }
       throw error;
     }
 
-    wxt.hook('config:resolved', (wxt) => {
+    wxtInstance.hook('config:resolved', (wxt) => {
       if (wxt.config.zip.sourcesRoot === wxt.config.root) {
         wxt.config.zip.sourcesRoot = join(
           wxt.config.outBaseDir,
@@ -85,7 +85,7 @@ export default defineWxtModule<TurboModuleOptions>({
       }
     });
 
-    wxt.hook('zip:sources:start', async (wxt) => {
+    wxtInstance.hook('zip:sources:start', async (wxt) => {
       await clearZipSourcesRoot(wxt);
 
       const { sourcesRoot } = wxt.config.zip;
@@ -101,18 +101,16 @@ export default defineWxtModule<TurboModuleOptions>({
 
       if (options.copyFiles) {
         for (const fileInfo of options.copyFiles) {
-          const { absoluteFromPath, absoluteToPath } = ((fileInfo: CopyFileConfig | string) => {
-            if (typeof fileInfo === 'string') {
-              return {
-                absoluteFromPath: resolve(wxt.config.root, fileInfo),
-                absoluteToPath: resolve(absoluteSourcesRoot, basename(fileInfo)),
-              };
-            }
-            return {
-              absoluteFromPath: resolve(wxt.config.root, fileInfo.from),
-              absoluteToPath: resolve(absoluteSourcesRoot, fileInfo.to),
-            };
-          })(fileInfo);
+          const absoluteFromPath = resolve(
+            wxt.config.root,
+            typeof fileInfo === 'string' ? fileInfo : fileInfo.from,
+          );
+          const absoluteToPath = resolve(
+            absoluteSourcesRoot,
+            typeof fileInfo === 'string' ? basename(fileInfo) : fileInfo.to,
+          );
+          // Keep the sequential loop for clarity; ignore no-await-in-loop for this copy.
+          // oxlint-disable-next-line no-await-in-loop
           await copyFile(
             absoluteFromPath,
             absoluteToPath,
@@ -123,8 +121,8 @@ export default defineWxtModule<TurboModuleOptions>({
       }
     });
 
-    wxt.hook('zip:sources:done', async (wxt) => {
-      if (options.cleanup ?? true) {
+    wxtInstance.hook('zip:done', async (wxt) => {
+      if (wxt.config.zip.zipSources && (options.cleanup ?? true)) {
         await clearZipSourcesRoot(wxt);
       }
     });
