@@ -32,7 +32,9 @@
     "build": "tsdown",
     "format": "oxlint --fix . && oxfmt --write .",
     "lint": "oxfmt --check . && oxlint .",
-    "test": "tsc --noEmit"
+    "test": "pnpm typecheck && pnpm test:integration",
+    "test:integration": "pnpm build && node --test tests/integration/*.test.mjs",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "is-path-inside": "^4.0.0",
@@ -41,10 +43,12 @@
   "devDependencies": {
     "@stzhu/tsconfig": "^0.5.0",
     "@types/node": "^26.6.6",
+    "fflate": "^0.8.3",
     "oxfmt": "^0.77.0",
     "oxlint": "^1.92.0",
     "oxlint-tsgolint": "^7.0.2006",
     "tsdown": "^0.23.7",
+    "turbo": "^2.9.3",
     "typescript": "^7.0.2"
   },
   "peerDependencies": {

@@ -35,6 +35,16 @@ export default defineConfig({
 - **Turborepo Pruning**: Automatically prunes your monorepo when running `wxt zip` to include only the necessary sources for the extension.
 - **Extra Files**: Copy extra files (like READMEs or legal docs) into the sources zip during the build process.
 
+## Development
+
+Run `pnpm test` to typecheck the package and run the WXT integration tests, or
+`pnpm test:integration` to run only the integration tests (including a package build).
+
+The tests create temporary Git monorepos and run the real WXT CLI with the built
+module. They check Firefox extension and source ZIP contents, workspace pruning,
+both `copyFiles` formats, stale-source removal, and default versus disabled cleanup.
+They require Git on `PATH` and do not launch a browser or access the network.
+
 ## Publishing
 
 Publishing a GitHub release uses `stevezhu/actions/npm-publish@v3` to run checks, build the package, and stage it on npm with provenance. Configure the repository's `NPM_TOKEN` Actions secret with permission to stage this package. The action uses pnpm 11.3.0 or later, selected by `packageManager` in `package.json`.
