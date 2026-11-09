@@ -109,7 +109,6 @@ export default defineWxtModule<TurboModuleOptions>({
             absoluteSourcesRoot,
             typeof fileInfo === 'string' ? basename(fileInfo) : fileInfo.to,
           );
-          // Preserve copy order so duplicate destinations fail deterministically.
           // oxlint-disable-next-line no-await-in-loop
           await copyFile(
             absoluteFromPath,
