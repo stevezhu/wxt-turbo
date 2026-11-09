@@ -100,24 +100,24 @@ export default defineWxtModule<TurboModuleOptions>({
       }
 
       if (options.copyFiles) {
-        await options.copyFiles.reduce(async (previousCopy, fileInfo) => {
-          // Preserve copy order so duplicate destinations fail deterministically.
-          await previousCopy;
-          const absoluteFromPath = resolve(
-            wxt.config.root,
-            typeof fileInfo === 'string' ? fileInfo : fileInfo.from,
-          );
-          const absoluteToPath = resolve(
-            absoluteSourcesRoot,
-            typeof fileInfo === 'string' ? basename(fileInfo) : fileInfo.to,
-          );
-          await copyFile(
-            absoluteFromPath,
-            absoluteToPath,
-            // fail if destination file already exists
-            fsConstants.COPYFILE_EXCL,
-          );
-        }, Promise.resolve());
+        await Promise.all(
+          options.copyFiles.map((fileInfo) => {
+            const absoluteFromPath = resolve(
+              wxt.config.root,
+              typeof fileInfo === 'string' ? fileInfo : fileInfo.from,
+            );
+            const absoluteToPath = resolve(
+              absoluteSourcesRoot,
+              typeof fileInfo === 'string' ? basename(fileInfo) : fileInfo.to,
+            );
+            return copyFile(
+              absoluteFromPath,
+              absoluteToPath,
+              // fail if destination file already exists
+              fsConstants.COPYFILE_EXCL,
+            );
+          }),
+        );
       }
     });
 
