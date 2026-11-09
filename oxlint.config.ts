@@ -13,5 +13,5 @@ export default defineConfig({
   env: {
     node: true,
   },
-  ignorePatterns: ['coverage/'],
+  ignorePatterns: ['coverage/', 'tests/fixtures/'],
 });

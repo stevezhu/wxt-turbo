@@ -1,0 +1,18 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+  .: {}
+
+  apps/extension:
+    dependencies:
+      fixture-shared:
+        specifier: workspace:*
+        version: link:../../packages/shared
+
+  packages/shared: {}
+
+  packages/unrelated: {}
