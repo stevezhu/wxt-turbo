@@ -1,6 +1,6 @@
 {
   "name": "wxt-turbo",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "WXT module for Turborepo integration",
   "keywords": [
     "turbo",
