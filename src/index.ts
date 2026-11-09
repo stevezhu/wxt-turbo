@@ -123,8 +123,8 @@ export default defineWxtModule<TurboModuleOptions>({
       }
     });
 
-    wxt.hook('zip:sources:done', async (wxt) => {
-      if (options.cleanup ?? true) {
+    wxt.hook('zip:done', async (wxt) => {
+      if (wxt.config.zip.zipSources && (options.cleanup ?? true)) {
         await clearZipSourcesRoot(wxt);
       }
     });
