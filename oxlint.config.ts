@@ -13,5 +13,5 @@ export default defineConfig({
   env: {
     node: true,
   },
-  ignorePatterns: ['dist/', 'coverage/', '.pnpm-store/'],
+  ignorePatterns: ['coverage/'],
 });
